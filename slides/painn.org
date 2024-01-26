@@ -1,0 +1,71 @@
+* GNNs
+** conventional NNs are not enough for graphs
+
+- we want to avoid having to craft features manually
+   
+** analogy to images: convolutional NNs
+** how do GNNs differ to conventional NNs?
+** advantages in chemistry
+
+- properties of an atom in a molecule depend on two things:
+  - atom type (modelled by initial /embedding/)
+  - interactions with other atoms (modelled by convolution / /message passing/)
+
+* Atom embeddings    
+   
+* Message Passing
+** a type of GNN -- what makes it special?
+I think GNNs all involve something similar to message passing called "graph
+convolution", where features of nodes are updated on every layer (or to think
+procedurally, in every timestep) based on the features of the surrounding
+nodes (and the features of the node in question).
+
+Message passing is special in that it
+  1) distinguishes pairwise message-passing and nodewise update steps
+  2) involves edge-features as well as node features
+
+The idea that messages are exchanged between neighbouring nodes, and are
+"conditioned" by the edges they pass through, before being aggregated at their
+destination -- is justification for the name "message passing".
+** origin in chemistry
+
+   
+* Equi- vs invariance
+** mathematical definition
+** how does this apply to PaiNN?
+- angles O(N^2) vs direction vectors O(N)
+** ferrocene example from paper [IMPORTANT!]
+- this answers the question "what can PaiNN do that SchNet cannot?" [PROBABLY!]
+
+  
+* SchNet and PaiNN predict forces in the same way!
+"How does the prediction of energies and forces differ between SchNet and
+PaiNN"
+- PaiNN predicts forces from the gradients of predicted energies
+  - even though direct prediction using vectorial features would be possible
+  - they do this to ensure consistency (energy conservation)
+- how does PaiNN predict energies?
+- how does SchNet predict forces
+- how does SchNet predict energies
+
+I think energies are actually handled the same in both, as they are scalar
+properties and therefore rotationally invariant. Right?
+  - Yes. And since forces are calculated by differentiating wrt. atomic
+    positions, which are rotationally equivariant in any model, the forces are
+    also equivariant.
+
+Both can be /trained/ on forces and/or energies, /I think/.
+
+
+* In-depth workings of PaiNN
+- why are the update and message blocks defined how they are?
+  - I have no idea so far, seems super arbitrary (cf. AES algorithm)
+- how do learning (back-propagation?) and read-out actually work?
+- explain the weird flow diagrams
+  - contrast for PaiNN and for SchNet
+  
+* Spectra using PaiNN
+  - dipole moments require equivariant representation (right?)
+    - go into a bit of detail on what dipole moments are
+    - mention multipole expansion -- after all, the article does...
+  - 

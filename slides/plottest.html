@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<div id="myplot"></div>
+<script src="plotjs/d3.js"></script>
+<script src="plotjs/plot.js"></script>
+<script type="module">
+
+// import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+
+function SiLU(x, k = 1, x0 = 0) {
+    let denom = 1 + Math.exp(-k * (x - x0));
+    return x / denom;
+}
+
+function linspace(start, stop, n) {
+    let step = (stop - start) / n;
+    return [...Array(n).keys()].map(i => {
+        return start + i * step
+    })
+}
+
+let data = linspace(-5, 5, 1000).map(
+    x => {
+        return {x: x, y: SiLU(x)}
+    }
+)
+
+let plot = Plot.plot({
+    marks: [
+        Plot.ruleX([0]),
+        Plot.ruleY([0]),
+        Plot.lineY(data, {x: "x", y: "y"})
+    ]
+})
+
+// const plot = Plot.rectY({length: 10000}, Plot.binX({y: "count"}, {x: Math.random})).plot();
+const div = document.querySelector("#myplot");
+div.append(plot);
+
+</script>

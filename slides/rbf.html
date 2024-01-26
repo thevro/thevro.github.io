@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body onload="replot(1)">
+<div id="myplot" style="display: flex; justify-content: center;">
+    <figure></figure>
+</div>
+
+<div style="display: flex; justify-content: center;">
+n = <input type="number" value="1" min="1" onchange="replot(this.value)">
+</div>
+
+<script src="plotjs/d3.js"></script>
+<script src="plotjs/plot.js"></script>
+<script>
+    function fnraster(f) {
+        return Plot.raster({
+            x1: -1, x2: 1,
+            y1: -1, y2: 1,
+            fill: f
+        }).plot({
+            color: {type: "diverging", legend: true},
+            aspectRatio: 1,
+            width: 400,
+    })
+    }
+
+    function RBF(r, n=1, rcut=1) {
+        return Math.sin(n * Math.PI * r / rcut) / r;
+    }
+        
+    function replot(n) {
+        plot = fnraster((x, y) => RBF(Math.sqrt(x*x + y*y), n=n));
+        document.querySelector('#myplot > figure').replaceWith(plot);
+    }
+</script>
+
+</body>

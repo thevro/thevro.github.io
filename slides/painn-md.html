@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>SchNet and PaiNN</title>
+
+		<link rel="stylesheet" href="revealjs/dist/reset.css">
+		<link rel="stylesheet" href="revealjs/dist/reveal.css">
+		<link rel="stylesheet" href="revealjs/dist/theme/simple.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="revealjs/plugin/highlight/monokai.css">
+
+
+		<script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+
+		<style>
+			.fragment.blur {
+			  filter: blur(8px);
+			}
+			.fragment.blur.visible {
+			  filter: none;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown="painn.md"
+						 data-separator="^\n---\n"
+						 data-separator-vertical="^\n\|\|\|\n"
+						 data-separator-notes="^notes:">
+				</section>
+			</div>
+		</div>
+
+		<script src="revealjs/dist/reveal.js"></script>
+		<script src="revealjs/plugin/notes/notes.js"></script>
+		<script src="revealjs/plugin/markdown/markdown.js"></script>
+		<script src="revealjs/plugin/highlight/highlight.js"></script>
+		<script src="revealjs/plugin/math/math.js"></script>
+		<script src="revealjs/plugin/reveald3/reveald3.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				transition: "none",
+				backgroundTransition: "none",
+				controls: false,
+				// controlsTutorial: false,
+				slideNumber: true,
+				center: "false",
+				
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath, Reveald3 ]
+			});
+		</script>
+
+		<script>
+			Reveal.on('render-3d', () => {
+				let element = document.querySelector('#container-01');
+				let config = { backgroundColor: 'darkgray' };
+				let gridspec = { rows: 1, cols: 2, control_all: true };
+				let viewers = $3Dmol.createViewerGrid( element, gridspec, config );
+
+				
+				
+
+				$3Dmol.get('ethen.xyz', (data) => {
+					let viewer = viewers[0][0];
+					viewer.addModel(data, 'xyz', {style: 'stick'})
+					// original code recommences
+					viewer.zoomTo();
+					viewer.render();
+					viewer.zoom(0.8, 2000);
+					viewer.spin("vx");
+				});
+				
+
+				viewer = viewers[0][1]
+				viewer.addArrow({
+                  start: {x:0.0, y:0.0, z:0.0},
+                  end: {x:0.0, y:5.0, z:0.0},
+                  radius: 0.1,
+                  radiusRadio:2.0,
+                  mid:0.5,
+				  color: 'lightblue',
+              	});
+				viewer.addSphere({ center: {x:0, y:0, z:0}, radius: 0.5, color: 'green' });
+				viewer.zoomTo();
+				viewer.render();
+				viewer.render();
+				viewer.zoom(0.8, 2000);
+				viewer.spin("vx");
+			});
+		</script>
+
+
+	</body>
+</html>

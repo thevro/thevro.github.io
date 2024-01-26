@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<div id="myplot" style="display: flex; justify-content: center;"></div>
+
+<script src="plotjs/d3.js"></script>
+<script src="plotjs/plot.js"></script>
+<script src="plotjs/fnplot.js"></script>
+
+<script type="module">
+function SiLU(x, k = 1, x0 = 0) {
+    let denom = 1 + Math.exp(-k * (x - x0));
+    return x / denom;
+}
+
+fnplot(linspace(-5, 5, 1000), SiLU);
+</script>
