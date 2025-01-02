@@ -1,0 +1,6 @@
+To run Jupyter on an HPC, use port forwarding:
+<code>ssh -L [port on this machine]:localhost:[port on HPC] user@hpc</code>
+<hr>
+To install the ranger file manager globally using Pixi:
+<code>pixi global install ranger-fm --with "python=3.12"</code>
+The Python version needs to be forced as Python 3.13 broke ranger by deprecating imghdr
