@@ -91,19 +91,22 @@ Functions to document first
 .. automethod:: shnitsel.core.filtre.get_bond_lengths
     :no-index:
 
-.. autofunction:: shnitsel.plot.pca_biplot
+..
+    .. autofunction:: shnitsel.plot.pca_biplot
 
 .. automethod:: shnitsel.core.postprocess.assign_fosc
 
 .. automethod:: shnitsel.core.postprocess.get_inter_state
     :no-index:
 
-.. autofunction:: shnitsel.plot.spectra_all_times
-    :no-index:
+.. 
+    .. autofunction:: shnitsel.plot.spectra_all_times
+        :no-index:
 
-.. autofunction:: shnitsel.broaden_gauss
+.. 
+    .. autofunction:: shnitsel.broaden_gauss
 
-.. ↑ differs
+    .. ↑ differs
 
 .. automethod:: shnitsel.plot.Datasheet.plot_separated_spectra_and_hists
 
@@ -129,5 +132,5 @@ Functions to document first
 
 .. automethod:: shnitsel.core.xrhelpers.mgroupby
 
-.. automethod:: shnitsel.core.postprocess.dihedras
+.. automethod:: shnitsel.core.postprocess.dihedral
 
